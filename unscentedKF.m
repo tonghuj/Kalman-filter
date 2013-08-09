@@ -1,7 +1,7 @@
 %unscented Kalman filter  for reference " THE SQUARE-ROOT UNSCENTED KALMAN FILTER
 %FOR STATE AND PARAMETER-ESTIMATION ", and " the unscented Kalman filter for nonlinear estimation"
 
-% for nonlinear esitmation
+% for nonlinear esitmation.
 %y=func(x,pv)
 %y: m by 1
 %x: n by 1
