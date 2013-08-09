@@ -1,0 +1,52 @@
+%Kalman loglikelihood
+%Yt=dt+Zt*Xt+epsilon
+%X(t)=ct+Qt*X(t-1)+eta
+
+function [likelihoodsum]=Kalman_loglikihood(theta,data,T)
+%data: m by n, each column of data is a measurement, T: m by 1
+[row,column]=size(data);
+
+%parameters
+kappa=theta(1);
+mu=theta(2);
+sigma=theta(3);
+lamda=theta(4);
+Xi=theta(5:9);
+
+XiMatrix=diag(Xi.^2);
+
+dt=(1-exp(-kappa*T))*(mu-0.5*sigma^2-lamda)+sigma^2/(4*kappa)*(1-exp(-2*kappa*T));
+Zt=exp(-kappa*T);
+
+dt=7/360;
+eta=sigma^2*dt;
+
+ct=kappa*(mu-0.5*sigma^2)*dt;
+Qt=1-kappa*dt;
+
+
+
+%initialize
+X0=mean((data(:,0)-dt)./Zt);
+P0=eta;
+
+X_pos=X0;
+P_pos=P0;
+
+likelihoodsum=0;
+
+for i=1:column
+    %update time
+    X_pri=ct+Qt*X_pos;
+    P_pri=Qt*P_pos*Qt+eta;
+    %measurement update
+    K=P_pri*Zt
+    
+end
+
+
+
+
+
+
+end

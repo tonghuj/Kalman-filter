@@ -1,0 +1,13 @@
+% nonlinear function takes in
+% w=n*(2L+1)
+% measurex=l*(2L+1)
+% spit out:
+% y=m*(2L+1)
+
+%test y=w*x^2+noise
+
+function y = nonlinearfunc(w,dummy,measurex)
+
+y = w*measurex.^2+normrnd(0,0.,[1,length(w)]);
+
+end
